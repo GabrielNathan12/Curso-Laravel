@@ -24,6 +24,7 @@
                     <a href="#" class="btn btn-primary">Saber mais</a>
                 </div>
             </div>
+            <br>
         @endforeach
     </div>
 </div>
