@@ -49,8 +49,17 @@
             </nav>
         </header>
 
+        <main>
+            <div class="container-fluid">
+                <div class="row">
+                    @if(session('msg'))
+                        <p class="msg"> {{session('msg')}} </p>
+                    @endif
 
-        @yield('content')
+                    @yield('content')
+                </div>
+            </div>
+        </main>
         <footer> 
             <p> Gabriel N &copy; 2023</p>
         </footer>
