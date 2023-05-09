@@ -18,7 +18,7 @@
             </p>
             <p class="events-owner">
                 <ion-icon name="star-outline"></ion-icon>
-                Dono do Evento
+                {{$eventOwner['name']}}
             </p>
             <a href="#" class="btn btn-primary" id="event-submit">Confirmar Presenca</a>
             <h3>O evento conta com:</h3>
