@@ -29,8 +29,17 @@
                     </td>
                     <td>0</td>
                     <td>
-                        <a href="#">Editar</a>
-                        <a href="#">Deletar</a>
+                        <a href="#" class="btn btn-info edit-btn">
+                            <ion-icon name="create-outline">Editar</ion-icon>
+                        </a>
+                        <form action="/events/{{$event->id}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger delete-btn">
+                                <ion-icon name="trash-outline">Deletar</ion-icon>
+                            </button>
+                        </form>
+                        
                     </td>
                 </tr>
             @endforeach
