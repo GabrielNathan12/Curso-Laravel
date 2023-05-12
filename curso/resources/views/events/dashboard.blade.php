@@ -29,7 +29,7 @@
                     </td>
                     <td>0</td>
                     <td>
-                        <a href="#" class="btn btn-info edit-btn">
+                        <a href="/events/edit/{{$event->id}}" class="btn btn-info edit-btn">
                             <ion-icon name="create-outline">Editar</ion-icon>
                         </a>
                         <form action="/events/{{$event->id}}" method="POST">

@@ -182,6 +182,10 @@ header{
 .dashboard-events-container form{
     display:inline-block;
 }
+.img-preview{
+    width:100px;
+    margim-top:20px;
+}
 
 footer{
     text-align:center;
