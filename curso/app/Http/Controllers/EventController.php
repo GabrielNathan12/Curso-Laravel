@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\User;
+use Illuminate\Contracts\Auth\Authenticatable;
+
 class EventController extends Controller
 {
     public function index(){
@@ -77,24 +79,30 @@ class EventController extends Controller
         return view('events.edit', ['event' => $event]);
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
+        $event = Event::findOrFail($request->id);
         $data = $request->all();
-        
-        if($request->hasFile('image') && $request->file('image')->isValid()){
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+
+            unlink(public_path('img/events/' . $event->image));
             $requestImage = $request->image;
             $extension = $requestImage->extension();
-
-            $imageName = md5($requestImage->getClientOriginalName(). strtotime('now'). '.'.$extension);
-            
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
             $requestImage->move(public_path('img/events'), $imageName);
-
             $data['image'] = $imageName;
         }
+        Event::findOrFail($request->id)->update($data);
 
-        Event::findorFail($request->id)->update($data);
+        return redirect('/dashboard')->with('msg', 'Evento editado com sucesso!');
+    }
+
+    public function joinEvent($id) {
+        $user = auth()->user();
+        $user->eventsAsParticipant()->attach($id);
         
-        
-        
-        return redirect('/dashboard')->with('msg', 'Evento editado');
+        $event = Event::findOrFail($id);
+        return redirect('/dashboard')->with('msg', "Sua presença foi confirmada no evento ".$event->title);
     }
 }
