@@ -187,6 +187,14 @@ header{
     margim-top:20px;
 }
 
+#info-container .already-joined-msg{
+    margim:15px;
+    color:#004085;
+    background-color:#CCE5FF;
+    border:1px solid #B8DAFF;
+    padding:10px;
+
+}
 footer{
     text-align:center;
     background-color:#353E48;
